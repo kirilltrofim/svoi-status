@@ -1,31 +1,84 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# Проверки доступности SVOI. Описание — docs/MONITORING.md в репозитории family-hub.
+owner: kirilltrofim
+repo: svoi-status
 
+# Проверки идут с серверов GitHub каждые 5 минут — снаружи, а не с нашего сервера.
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Сайт
+    url: https://svoihub.ru/
+  - name: Веб-приложение
+    url: https://svoihub.ru/app/
+  - name: API
+    url: https://api.svoihub.ru/health
+    maxResponseTime: 5000
+  - name: Telegram-посредник
+    url: https://tg.svoihub.ru/oauth/.well-known/openid-configuration
+
+assignees:
+  - kirilltrofim
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  baseUrl: /svoi-status
+  logoUrl: https://raw.githubusercontent.com/kirilltrofim/svoi-status/master/assets/apple-touch-icon.png
+  favicon: https://raw.githubusercontent.com/kirilltrofim/svoi-status/master/assets/apple-touch-icon.png
+  name: SVOI — статус
+  introTitle: "**SVOI**: работают ли сайт, приложение и сервер"
+  introMessage: Проверка снаружи каждые 5 минут.
+  theme: light
   navbar:
-    - title: Status
+    - title: Статус
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+    - title: Сайт SVOI
+      href: https://svoihub.ru/
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+i18n:
+  activeIncidents: Сейчас сбои
+  allSystemsOperational: Всё работает
+  incidentReport: "Сбой №$NUMBER →"
+  activeIncidentSummary: Начался $DATE, записей $POSTS
+  incidentTitle: Сбой №$NUMBER
+  incidentDetails: Подробности сбоя
+  incidentFixed: Исправлено
+  incidentOngoing: Идёт
+  incidentOpenedAt: Начался
+  incidentClosedAt: Закончился
+  incidentSubscribe: Подписаться
+  incidentViewOnGitHub: Открыть на GitHub
+  incidentCommentSummary: $DATE, $AUTHOR
+  incidentBack: ← Все сбои
+  pastIncidents: Прошлые сбои
+  pastIncidentsResolved: Исправлено за $MINUTES мин
+  liveStatus: Сейчас
+  overallUptime: "Доступность: $UPTIME"
+  overallUptimeTitle: Доступность
+  averageResponseTime: "Среднее время ответа: $TIME мс"
+  averageResponseTimeTitle: Среднее время ответа
+  sevelDayResponseTime: Время ответа за 7 дней
+  responseTimeMs: Время ответа, мс
+  up: Работает
+  down: Не работает
+  degraded: Медленно
+  ms: мс
+  loading: Загружаем
+  navGitHub: GitHub
+  footer: Страница на [Upptime](https://upptime.js.org), исходники [на GitHub](https://github.com/$OWNER/$REPO)
+  rateLimitExceededTitle: Слишком много запросов
+  rateLimitExceededIntro: GitHub временно ограничил запросы. Обновите страницу позже.
+  errorTitle: Ошибка
+  errorIntro: Не удалось загрузить статус.
+  errorText: Попробуйте обновить страницу.
+  durationDay: 24 часа
+  durationWeek: Неделя
+  durationMonth: Месяц
+  durationYear: Год
+  durationAll: Всё время
+  pastScheduledMaintenance: Прошлые работы
+  scheduledMaintenance: Плановые работы
+  scheduledMaintenanceSummaryStarted: Начались $DATE, на $DURATION мин
+  scheduledMaintenanceSummaryStarts: Начнутся $DATE, на $DURATION мин
+  startedAt: Начались
+  startsAt: Начнутся
+  duration: Длительность
+  durationMin: $DURATION мин
+  incidentCompleted: Завершено
+  incidentScheduled: Запланировано
