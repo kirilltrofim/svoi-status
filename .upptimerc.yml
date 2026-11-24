@@ -17,24 +17,281 @@ sites:
 assignees:
   - kirilltrofim
 
+# Цвет графиков на странице сервиса (по умолчанию бирюзовый Upptime).
+graphBackgroundColor: "#DDE8FC"
+graphBorderColor: "#2670E9"
+
 status-website:
   baseUrl: /svoi-status
   logoUrl: https://raw.githubusercontent.com/kirilltrofim/svoi-status/master/assets/apple-touch-icon.png
   favicon: https://raw.githubusercontent.com/kirilltrofim/svoi-status/master/assets/apple-touch-icon.png
   name: SVOI — статус
-  introTitle: "**SVOI**: работают ли сайт, приложение и сервер"
-  introMessage: Проверка снаружи каждые 5 минут.
-  theme: light
+  introTitle: Статус SVOI
+  introMessage: Сайт, приложение и сервер. Проверяем снаружи каждые 5 минут.
+  # theme не задан: светлая или тёмная тема берётся с устройства, цвета обеих — в css ниже.
   navbar:
     - title: Статус
       href: /
     - title: Сайт SVOI
       href: https://svoihub.ru/
+  customHeadHtml: >-
+    <meta name="theme-color" content="#EEF1F8" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#11141D" media="(prefers-color-scheme: dark)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  # Убирает значок ✅ перед «Всё работает»: вместо него круг с галочкой из css.
+  js: >-
+    (function(){var f=function(){document.querySelectorAll('main > article.up').forEach(function(a){a.childNodes.forEach(function(n){if(n.nodeType===3&&n.nodeValue.indexOf('\u2705')>-1){n.nodeValue=n.nodeValue.replace('\u2705','').trim()}})})};new MutationObserver(f).observe(document.documentElement,{childList:true,subtree:true})})();
+  # Оформление в стиле UI-кита SVOI (стекло, #2670E9, Inter, скругления 28 и пилюли).
+  css: |
+    :root {
+      --svoi-blue: #2670E9;
+      --svoi-blue-ink: #1D5BD0;
+      --svoi-blue-soft: #DDE8FC;
+      --svoi-ground: #EEF1F8;
+      --svoi-glow-1: #C9DBFA;
+      --svoi-glow-2: #D6E3FB;
+      --svoi-text: #000;
+      --svoi-muted: rgba(0,0,0,0.6);
+      --svoi-line: rgba(0,0,0,0.07);
+      --svoi-glass: rgba(255,255,255,0.78);
+      --svoi-glass-soft: rgba(255,255,255,0.55);
+      --svoi-shadow: 0 10px 30px rgba(20,60,140,0.10);
+      --svoi-ok: #1E8A4C;
+      --svoi-ok-ink: #1A7642;
+      --svoi-ok-soft: #DDF3E4;
+      --svoi-bad: #C9372C;
+      --svoi-bad-soft: #FBE3E0;
+      --svoi-slow: #9A5A1E;
+      --svoi-slow-soft: #F7E7D6;
+      --body-background-color: var(--svoi-ground);
+      --body-text-color: var(--svoi-text);
+      --card-background-color: var(--svoi-glass);
+      --card-border-color: transparent;
+      --nav-background-color: transparent;
+      --nav-border-bottom-color: transparent;
+      --nav-current-border-bottom-color: transparent;
+      --change-background-color: var(--svoi-blue-soft);
+      --tag-color: #fff;
+      --tag-up-background-color: var(--svoi-ok);
+      --tag-down-background-color: var(--svoi-bad);
+      --tag-degraded-background-color: var(--svoi-slow);
+      --error-button-border-color: transparent;
+      --error-button-background-color: var(--svoi-blue);
+      --error-button-color: #fff;
+      --submit-button-border-color: transparent;
+      --submit-button-background-color: var(--svoi-blue);
+      --submit-button-color: #fff;
+      --code-background-color: var(--svoi-blue-soft);
+      --code-color: var(--svoi-blue-ink);
+      --graph-opacity: 1;
+      --graph-filter: none;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --svoi-blue-ink: #7FB0FF;
+        --svoi-blue-soft: rgba(38,112,233,0.22);
+        --svoi-ground: #11141D;
+        --svoi-glow-1: rgba(38,112,233,0.30);
+        --svoi-glow-2: rgba(38,112,233,0.14);
+        --svoi-text: #fff;
+        --svoi-muted: rgba(255,255,255,0.62);
+        --svoi-line: rgba(255,255,255,0.09);
+        --svoi-glass: rgba(255,255,255,0.07);
+        --svoi-glass-soft: rgba(255,255,255,0.08);
+        --svoi-shadow: none;
+        --svoi-ok: #3DBE6B;
+        --svoi-ok-ink: #6FD896;
+        --svoi-ok-soft: rgba(61,190,107,0.16);
+        --svoi-bad: #FF7A6E;
+        --svoi-bad-soft: rgba(255,122,110,0.14);
+        --svoi-slow: #FFAE5C;
+        --svoi-slow-soft: rgba(255,174,92,0.14);
+        --code-color: #A8C9FF;
+        --svoi-graph-opacity: .3;
+        color-scheme: dark;
+      }
+    }
+
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-feature-settings: "cv11" 1;
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding-bottom: 0;
+      background:
+        radial-gradient(70% 420px at 8% 0%, var(--svoi-glow-1) 0%, transparent 70%),
+        radial-gradient(60% 420px at 100% 60px, var(--svoi-glow-2) 0%, transparent 70%),
+        var(--svoi-ground) no-repeat;
+      color: var(--svoi-text);
+    }
+    a { color: var(--svoi-blue-ink); }
+    h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
+    :focus-visible { outline: 3px solid var(--svoi-blue); outline-offset: 3px; border-radius: 12px; }
+
+    .container { max-width: 880px; padding: 0 24px; }
+
+    /* Шапка */
+    nav { position: sticky; top: 0; z-index: 10; padding: 0 24px; margin-bottom: 0; border: 0; font-weight: 500; overflow: visible; white-space: nowrap;
+      background: color-mix(in srgb, var(--svoi-ground) 40%, transparent);
+      -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
+    nav > .container { max-width: 832px; padding: 12px 0; gap: 12px; }
+    nav .logo { margin-right: 0; padding: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: var(--svoi-text); white-space: normal; }
+    nav .logo img { height: 40px; width: 40px; border-radius: 12px; margin-right: 12px; }
+    nav ul { gap: 2px; padding: 2px; border-radius: 999px; background: var(--svoi-glass-soft); }
+    nav ul a { display: flex !important; align-items: center; min-height: 40px; box-sizing: border-box; padding: 0 16px !important; border-radius: 999px; font-size: 14px; color: var(--svoi-muted); border: 0; transition: background-color .15s, color .15s; }
+    nav ul a:active { transform: scale(0.97); }
+    nav ul a:hover { color: var(--svoi-text); }
+    nav ul a[aria-current] { background: var(--svoi-blue-soft); color: var(--svoi-blue-ink); font-weight: 600; border: 0; }
+
+    /* Вступление и главный блок */
+    main.container { padding-top: 24px; }
+    main > header { margin-bottom: 20px; }
+    main > header h1 { margin: 0 0 4px; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+    main > header h1 p, main > header .lead p { margin: 0; }
+    main > header .lead { margin: 0; font-size: 16px; color: var(--svoi-muted); }
+
+    main > article.up {
+      display: flex; align-items: center; gap: 24px;
+      margin: 0 0 36px; padding: 32px 36px;
+      border: 0; border-radius: 28px;
+      background: var(--svoi-glass); box-shadow: var(--svoi-shadow);
+      color: var(--svoi-text);
+      font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -0.035em;
+    }
+    main > article.up::before {
+      content: ""; flex: none; width: 72px; height: 72px; border-radius: 999px;
+      background: var(--svoi-ok-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E8A4C' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 34px no-repeat;
+      box-shadow: inset 0 0 0 4px var(--svoi-ok);
+    }
+
+    /* Карточки: общие */
+    article { border: 0; border-radius: 20px; background: var(--svoi-glass); box-shadow: var(--svoi-shadow); padding: 18px 22px; }
+    article + article { margin-top: 10px; }
+    article.up, article.down, article.degraded { border-left: 0; color: var(--svoi-text); }
+    article h4 { margin: 0 0 2px; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+    article a { color: inherit; }
+    main .f.r a { display: inline-block; padding: 10px 16px; border-radius: 999px; background: var(--svoi-blue-soft); color: var(--svoi-blue-ink); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+
+    /* Текущие сбои */
+    main section > h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 14px; }
+    article.down-active { background: var(--svoi-bad-soft); box-shadow: none; }
+    article.down-active.degraded { background: var(--svoi-slow-soft); }
+    article.down-active h4::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 10px; border-radius: 999px; background: var(--svoi-bad); vertical-align: 2px; }
+    article.down-active.degraded h4::before { background: var(--svoi-slow); }
+    article.down-active .f > div:first-child > div { color: var(--svoi-muted); font-size: 14px; }
+
+    /* «Сервисы»: заголовок и переключатель периода */
+    main > .f.changed, main > .f { gap: 12px 16px; margin: 0 0 16px; }
+    main > .f > h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+    main > .f > form.f.r { flex-wrap: nowrap; gap: 2px; padding: 4px; border-radius: 999px; background: var(--svoi-glass-soft); max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+    main > .f > form.f.r::-webkit-scrollbar { display: none; }
+    main > .f > form.f.r > div { position: relative; flex: none; }
+    main > .f > form.f.r input { display: block !important; position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+    main > .f > form.f.r label { display: flex; align-items: center; justify-content: center; min-height: 40px; box-sizing: border-box; margin: 0 !important; padding: 0 16px; border-radius: 999px; font-size: 14px; font-weight: 500 !important; color: var(--svoi-muted); cursor: pointer; white-space: nowrap; transition: background-color .2s, color .2s; }
+    main > .f > form.f.r label:hover { color: var(--svoi-text); }
+    main > .f > form.f.r label:active { transform: scale(0.97); }
+    main > .f > form.f.r input:checked + label { background: var(--svoi-blue); color: #fff; font-weight: 600 !important; box-shadow: 0 8px 18px rgba(38,112,233,0.3); }
+    main > .f > form.f.r input:focus-visible + label { outline: 3px solid var(--svoi-blue); outline-offset: 2px; }
+
+    /* «Сервисы»: плитки */
+    section.live-status { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    section.live-status article.graph {
+      margin: 0; padding: 22px 24px 92px; border-radius: 28px;
+      display: grid; grid-template-columns: auto auto 1fr; align-content: start; gap: 14px 28px;
+      background-image: none !important; overflow: hidden; isolation: isolate;
+    }
+    section.live-status article.graph::before {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 76px; z-index: -1;
+      background: var(--background) bottom / 100% 100% no-repeat;
+      filter: hue-rotate(58deg) saturate(1.3) brightness(.95); opacity: var(--svoi-graph-opacity, .5);
+    }
+    section.live-status article.graph h4 { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0; font-size: 18px; }
+    section.live-status article.graph { transition: transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s; }
+    section.live-status article.graph:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(20,60,140,0.14); }
+    section.live-status article.graph:active { transform: scale(0.99); transition-duration: .1s; }
+    section.live-status article.graph:focus-within { outline: 3px solid var(--svoi-blue); outline-offset: 3px; }
+    section.live-status article.graph h4 a:focus-visible { outline: none; }
+    section.live-status article.graph h4 .icon { display: none; }
+    section.live-status article.graph h4 a { order: 0; }
+    section.live-status article.graph h4::after {
+      order: 1; flex: none; content: "Работает";
+      padding: 6px 12px 6px 28px; border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: 0;
+      color: var(--svoi-ok-ink);
+      background: radial-gradient(circle at 15px 50%, var(--svoi-ok) 4px, transparent 4.5px), var(--svoi-ok-soft);
+    }
+    section.live-status article.down h4::after { content: "Не работает"; color: var(--svoi-bad); background: radial-gradient(circle at 15px 50%, var(--svoi-bad) 4px, transparent 4.5px), var(--svoi-bad-soft); }
+    section.live-status article.degraded h4::after { content: "Медленно"; color: var(--svoi-slow); background: radial-gradient(circle at 15px 50%, var(--svoi-slow) 4px, transparent 4.5px), var(--svoi-slow-soft); }
+    section.live-status article.graph > div { display: flex; flex-direction: column-reverse; font-size: 13px; color: var(--svoi-muted); line-height: 1.35; }
+    section.live-status article.graph .data { padding: 0 !important; margin: 0; border-radius: 8px; font-size: 30px; line-height: 1.15; font-weight: 800; letter-spacing: -0.03em; color: var(--svoi-text); font-variant-numeric: tabular-nums; }
+    .changed + section .data { background: transparent !important; opacity: .45; }
+
+    /* Прошлые сбои и плановые работы */
+    main section > h3 { margin: 22px 0 10px; font-size: 14px; font-weight: 600; letter-spacing: 0; opacity: 1; color: var(--svoi-muted); }
+    main section > article.down:not(.down-active), main section > article.link.degraded:not(.down-active) { padding: 16px 20px; }
+    main section > article.down:not(.down-active) .f > div:first-child > div { font-size: 14px; color: var(--svoi-muted); }
+    section + h2 { margin-top: 36px; }
+
+    /* Страница сервиса и сбоя */
+    .tag { margin-left: 12px; padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: 0; vertical-align: middle; }
+    main h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; }
+    main h1 .no-underline { color: var(--svoi-text); }
+    dl dt, dl dd { margin: 0; }
+    main dl dt { font-size: 13px; font-weight: 500; color: var(--svoi-muted); }
+    main dl { display: grid; grid-auto-flow: column; grid-template-rows: auto auto; justify-content: start; gap: 2px 40px; padding: 20px 24px; border-radius: 28px; background: var(--svoi-glass); box-shadow: var(--svoi-shadow); }
+    main dl dd { margin-bottom: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+    main dl dd:last-child { margin-bottom: 0; }
+    main section canvas { border-radius: 20px; }
+    main > footer a, main footer a { color: var(--svoi-blue-ink); font-weight: 600; }
+
+    a.error-button { border-radius: 999px; padding: 12px 20px; }
+
+    /* Подвал */
+    body > #sapper > footer, #sapper > footer { margin: 48px auto 0; padding: 0 24px 40px; max-width: 880px; font-size: 13px; color: var(--svoi-muted); opacity: 1; }
+    #sapper > footer a { color: var(--svoi-blue-ink); }
+
+    /* Телефон */
+    @media (max-width: 700px) {
+      .container { padding: 0 16px; }
+      nav { padding: 0 16px; }
+      nav > .container { padding: 10px 0; }
+      nav .logo { font-size: 15px; }
+      nav .logo img { height: 32px; width: 32px; border-radius: 10px; margin-right: 8px; }
+      nav ul a { padding: 0 12px !important; font-size: 13px; }
+      main.container { padding-top: 12px; }
+      main > article.up { gap: 16px; padding: 22px 20px; font-size: 28px; margin-bottom: 28px; }
+      main > article.up::before { width: 52px; height: 52px; background-size: 26px; box-shadow: inset 0 0 0 3px var(--svoi-ok); }
+      section.live-status { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+      section.live-status article.graph { padding: 20px 20px 84px; gap: 12px 24px; }
+      section.live-status article.graph .data { font-size: 26px; }
+      main > .f > form.f.r { flex: 1 1 100%; }
+      main > .f > form.f.r > div { flex: 1 1 auto; }
+      main > .f > form.f.r label { padding: 0 8px; font-size: 13px; }
+      main .f { gap: 10px; }
+    }
+
+    @media (max-width: 430px) {
+      nav .logo div { display: none; }
+    }
+    @media (prefers-reduced-transparency: reduce) {
+      nav { background: var(--svoi-ground); -webkit-backdrop-filter: none; backdrop-filter: none; }
+    }
+    @media (prefers-contrast: more) {
+      article, main dl, nav ul, main > .f > form.f.r { outline: 1px solid currentColor; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
 
 i18n:
+  locale: ru
   activeIncidents: Сейчас сбои
   allSystemsOperational: Всё работает
-  incidentReport: "Сбой №$NUMBER →"
+  incidentReport: Сбой №$NUMBER
   activeIncidentSummary: Начался $DATE, записей $POSTS
   incidentTitle: Сбой №$NUMBER
   incidentDetails: Подробности сбоя
@@ -48,17 +305,17 @@ i18n:
   incidentBack: ← Все сбои
   pastIncidents: Прошлые сбои
   pastIncidentsResolved: Исправлено за $MINUTES мин
-  liveStatus: Сейчас
-  overallUptime: "Доступность: $UPTIME"
+  liveStatus: Сервисы
+  overallUptime: "Доступность $UPTIME"
   overallUptimeTitle: Доступность
-  averageResponseTime: "Среднее время ответа: $TIME мс"
+  averageResponseTime: "Среднее время ответа $TIME мс"
   averageResponseTimeTitle: Среднее время ответа
   sevelDayResponseTime: Время ответа за 7 дней
   responseTimeMs: Время ответа, мс
   up: Работает
   down: Не работает
   degraded: Медленно
-  ms: мс
+  ms: " мс"
   loading: Загружаем
   navGitHub: GitHub
   footer: Страница на [Upptime](https://upptime.js.org), исходники [на GitHub](https://github.com/$OWNER/$REPO)
@@ -67,10 +324,10 @@ i18n:
   errorTitle: Ошибка
   errorIntro: Не удалось загрузить статус.
   errorText: Попробуйте обновить страницу.
-  durationDay: 24 часа
-  durationWeek: Неделя
-  durationMonth: Месяц
-  durationYear: Год
+  duration24H: 24 часа
+  duration7D: Неделя
+  duration30D: Месяц
+  duration1Y: Год
   durationAll: Всё время
   pastScheduledMaintenance: Прошлые работы
   scheduledMaintenance: Плановые работы
