@@ -12,7 +12,7 @@
     "uptimeYear": "100.00%",
     "time": 1070,
     "timeDay": 1171,
-    "timeWeek": 1070,
+    "timeWeek": 1101,
     "timeMonth": 1070,
     "timeYear": 1070,
     "dailyMinutesDown": {}
@@ -30,7 +30,7 @@
     "uptimeYear": "100.00%",
     "time": 742,
     "timeDay": 545,
-    "timeWeek": 742,
+    "timeWeek": 777,
     "timeMonth": 742,
     "timeYear": 742,
     "dailyMinutesDown": {}
@@ -48,7 +48,7 @@
     "uptimeYear": "100.00%",
     "time": 679,
     "timeDay": 732,
-    "timeWeek": 679,
+    "timeWeek": 694,
     "timeMonth": 679,
     "timeYear": 679,
     "dailyMinutesDown": {}
@@ -58,7 +58,7 @@
     "url": "https://tg.svoihub.ru/oauth/.well-known/openid-configuration",
     "icon": "https://icons.duckduckgo.com/ip3/tg.svoihub.ru.ico",
     "slug": "telegram-posrednik",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
     "uptimeDay": "100.00%",
     "uptimeWeek": "100.00%",
@@ -66,7 +66,7 @@
     "uptimeYear": "100.00%",
     "time": 952,
     "timeDay": 948,
-    "timeWeek": 952,
+    "timeWeek": 993,
     "timeMonth": 952,
     "timeYear": 952,
     "dailyMinutesDown": {}
